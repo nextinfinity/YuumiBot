@@ -1,0 +1,34 @@
+package ch.kalunight.yuumi.model;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import net.dv8tion.jda.api.entities.Message;
+
+public class ControlPanel {
+
+	private List<Message> infoPanel;
+	private List<InfoCard> infoCards;
+
+	public ControlPanel() {
+		this.infoPanel = Collections.synchronizedList(new ArrayList<>());
+		this.infoCards = Collections.synchronizedList(new ArrayList<>());
+	}
+
+	public List<Message> getInfoPanel() {
+		return infoPanel;
+	}
+
+	public void setInfoPanel(List<Message> infoPanel) {
+		this.infoPanel = infoPanel;
+	}
+
+	public List<InfoCard> getInfoCards() {
+		return infoCards;
+	}
+
+	public void setInfoCards(List<InfoCard> infoCards) {
+		this.infoCards = infoCards;
+	}
+
+}
