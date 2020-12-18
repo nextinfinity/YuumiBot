@@ -284,7 +284,7 @@ public class ConfigRepository {
 			Role role = Yuumi.getJda().getGuildById(guildId).getRoleById(roleId);
 			roleOption.setRole(role);
 			if(role == null) {
-				logger.info("Zoe role has been deleted. We update the db.");
+				logger.info("Yuumi role has been deleted. We update the db.");
 				updateRoleOption(guildId, 0);
 
 				DTO.InfoChannel infoChannelDb = InfoChannelRepository.getInfoChannel(guildId);

@@ -56,7 +56,7 @@ public class DefineRankChannelCommand extends YuumiCommand {
 						}else {
 							RankHistoryChannelRepository.createRankHistoryChannel(server.serv_id, textChannel.getIdLong());
 
-							if(config.getZoeRoleOption().getRole() != null) {
+							if(config.getYuumiRoleOption().getRole() != null) {
 								CommandUtil.giveRolePermission(event.getGuild(), textChannel, config);
 							}
 

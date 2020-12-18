@@ -360,7 +360,7 @@ public class RiotRequest {
 	public static String getMasterysScore(String summonerId, int championId, Platform platform) {
 		ChampionMastery mastery = null;
 		try {
-			mastery = Yuumi.getRiotApi().getChampionMasteriesBySummonerByChampionWithRateLimit(platform, summonerId, championId);
+			mastery = Yuumi.getRiotApi().getChampionMasteryBySummonerByChampionWithRateLimit(platform, summonerId, championId);
 		} catch(RiotApiException e) {
 			logger.debug("Impossible to get mastery score : {}", e.getMessage());
 			if(e.getErrorCode() == RiotApiException.DATA_NOT_FOUND) {

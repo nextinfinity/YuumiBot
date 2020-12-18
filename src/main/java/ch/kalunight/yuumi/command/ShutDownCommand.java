@@ -64,7 +64,7 @@ public class ShutDownCommand extends YuumiCommand {
 
 		logger.info("All ThreadPoolExecutors has safely stop. Now shutdown JDA...");
 		channel.sendMessage("All ThreadPoolExecutors has safely stop. Now shutdown JDA. (ShutDown is complete)").complete();
-		channel.sendMessage("Please wait 30 sec before update Zoe, some process can take some time before to automatically shutdown.").complete();
+		channel.sendMessage("Please wait 30 sec before update Yuumi, some process can take some time before to automatically shutdown.").complete();
 
 		Yuumi.getJda().shutdown();
 
@@ -80,7 +80,7 @@ public class ShutDownCommand extends YuumiCommand {
 		RepoResources.shutdownDB();
 
 		logger.info("JDA has been ShutDown !");
-		logger.info("Zoe Process are now totally down ! Some process can remain and will be shutdown automatically.");
+		logger.info("Yuumi Process are now totally down ! Some process can remain and will be shutdown automatically.");
 	}
 
 	@Override

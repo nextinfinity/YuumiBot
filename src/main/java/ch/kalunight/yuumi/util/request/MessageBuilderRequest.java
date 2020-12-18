@@ -59,7 +59,7 @@ public class MessageBuilderRequest {
 
 	private static final String BLUE_TEAM_STRING = "blueTeam";
 	private static final String RED_TEAM_STRING = "redTeam";
-	private static final String MASTERIES_WR_THIS_MONTH_STRING = "masteriesWrTitleRespectSize";
+	private static final String MASTERIES_WR_THIS_MONTH_STRING = "masteryWrTitleRespectSize";
 	private static final String SOLO_Q_RANK_STRING = "soloqTitleRespectSize";
 	private static final String RESUME_OF_THE_GAME_STRING = "resumeOfTheGame";
 	private static final String RESUME_OF_LAST_GAME = "resumeOfLastGame";
@@ -524,7 +524,7 @@ public class MessageBuilderRequest {
 
 		String blueTeamTranslated = LanguageManager.getText(server.serv_language, BLUE_TEAM_STRING);
 		String redTeamTranslated = LanguageManager.getText(server.serv_language, RED_TEAM_STRING);
-		String masteriesWRThisMonthTranslated = LanguageManager.getText(server.serv_language, MASTERIES_WR_THIS_MONTH_STRING);
+		String masteryWRThisMonthTranslated = LanguageManager.getText(server.serv_language, MASTERIES_WR_THIS_MONTH_STRING);
 		String rankTitleTranslated;
 		if(currentGameInfo.getGameQueueConfigId() == GameQueueConfigId.FLEX.getId()) {
 			rankTitleTranslated = LanguageManager.getText(server.serv_language, "flexTitleRespectSize");
@@ -588,11 +588,11 @@ public class MessageBuilderRequest {
 
 		message.addField(blueTeamTranslated, blueTeamString.toString(), true);
 		message.addField(rankTitleTranslated, blueTeamRankString.toString(), true);
-		message.addField(masteriesWRThisMonthTranslated, blueTeamWinrateString.toString(), true);
+		message.addField(masteryWRThisMonthTranslated, blueTeamWinrateString.toString(), true);
 
 		message.addField(redTeamTranslated, redTeamString.toString(), true);
 		message.addField(rankTitleTranslated, redTeamRankString.toString(), true);
-		message.addField(masteriesWRThisMonthTranslated, redTeamWinrateString.toString(), true);
+		message.addField(masteryWRThisMonthTranslated, redTeamWinrateString.toString(), true);
 
 		message.setFooter(LanguageManager.getText(server.serv_language, "infoCardsGameFooter")
 				+ " : " + MessageBuilderRequestUtil.getMatchTimeFromDuration(currentGameInfo.getGameLength()), null);
@@ -603,7 +603,7 @@ public class MessageBuilderRequest {
 	}
 
 	public static MessageEmbed createProfileMessage(DTO.Player player, DTO.LeagueAccount leagueAccount,
-													List<ChampionMastery> masteries, String language, String url) throws RiotApiException {
+													List<ChampionMastery> mastery, String language, String url) throws RiotApiException {
 
 		String latestGameTranslated = LanguageManager.getText(language, "statsProfileLatestGames");
 
@@ -620,17 +620,17 @@ public class MessageBuilderRequest {
 					leagueAccount.leagueAccount_name, summoner.getName(), summoner.getSummonerLevel()));
 		}
 
-		List<ChampionMastery> threeBestchampionMasteries = StatsProfileCommand.getBestMasteries(masteries, 3);
+		List<ChampionMastery> threeBestchampionMastery = StatsProfileCommand.getBestMastery(mastery, 3);
 
 		StringBuilder stringBuilder = new StringBuilder();
 
-		for(ChampionMastery championMastery : threeBestchampionMasteries) {
+		for(ChampionMastery championMastery : threeBestchampionMastery) {
 			Champion champion = Resources.getChampionDataById(championMastery.getChampionId());
 			stringBuilder.append(champion.getDisplayName() + " " + champion.getName() + " - **"
 					+ MessageBuilderRequestUtil.getMasteryUnit(championMastery.getChampionPoints()) +"**\n");
 		}
 
-		if(threeBestchampionMasteries.isEmpty()) {
+		if(threeBestchampionMastery.isEmpty()) {
 			stringBuilder.append("*" + LanguageManager.getText(language, "empty") + "*");
 		}
 
@@ -640,19 +640,19 @@ public class MessageBuilderRequest {
 		int nbrMastery7 = 0;
 		int nbrMastery6 = 0;
 		int nbrMastery5 = 0;
-		long totalNbrMasteries = 0;
+		long totalNbrMastery = 0;
 
-		for(ChampionMastery championMastery : masteries) {
+		for(ChampionMastery championMastery : mastery) {
 			switch(championMastery.getChampionLevel()) {
 				case 5: nbrMastery5++; break;
 				case 6: nbrMastery6++; break;
 				case 7: nbrMastery7++; break;
 				default: break;
 			}
-			totalNbrMasteries += championMastery.getChampionPoints();
+			totalNbrMastery += championMastery.getChampionPoints();
 		}
 
-		double moyennePoints = (double) totalNbrMasteries / masteries.size();
+		double moyennePoints = (double) totalNbrMastery / mastery.size();
 
 		CustomEmote masteryEmote7 = Resources.getMasteryEmote().get(Mastery.getEnum(7));
 		CustomEmote masteryEmote6 = Resources.getMasteryEmote().get(Mastery.getEnum(6));
@@ -662,7 +662,7 @@ public class MessageBuilderRequest {
 				nbrMastery7 + "x" + masteryEmote7.getUsableEmote() + " "
 						+ nbrMastery6 + "x" + masteryEmote6.getUsableEmote() + " "
 						+ nbrMastery5 + "x" + masteryEmote5.getUsableEmote() + "\n"
-						+ MessageBuilderRequestUtil.getMasteryUnit(totalNbrMasteries)
+						+ MessageBuilderRequestUtil.getMasteryUnit(totalNbrMastery)
 						+ " **" + LanguageManager.getText(language, "statsProfileTotalPointsRespectSize") + "**\n"
 						+ MessageBuilderRequestUtil.getMasteryUnit((long) moyennePoints)
 						+ " **" + LanguageManager.getText(language, "statsProfileAveragePointsRespectSize") + "**", true);

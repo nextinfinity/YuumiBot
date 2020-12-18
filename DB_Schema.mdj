@@ -17,7 +17,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFutjqgw1hwVjc="
 					},
-					"name": "ZoeDatabaseUML",
+					"name": "YuumiDatabaseUML",
 					"ownedViews": [
 						{
 							"_type": "ERDEntityView",

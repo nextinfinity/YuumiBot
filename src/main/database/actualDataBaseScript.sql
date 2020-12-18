@@ -1,8 +1,8 @@
--- Init Zoe DB
+-- Init Yuumi DB
 
-CREATE DATABASE zoe;
-create user zoeadmin with encrypted password 'xf345sD2#a@v'; --Random test password
-grant all privileges on database zoe to zoeAdmin;
+CREATE DATABASE yuumi;
+create user yuumiadmin with encrypted password 'xf345sD2#a@v'; --Random test password
+grant all privileges on database yuumi to yuumiAdmin;
 
 CREATE TABLE server (
   serv_id 										SERIAL,

@@ -32,7 +32,7 @@ public class DeleteInfoChannelCommand extends YuumiCommand {
 		DTO.InfoChannel infochannel = InfoChannelRepository.getInfoChannel(server.serv_guildId);
 
 		if(infochannel == null) {
-			event.reply(LanguageManager.getText(server.serv_language, "deleteInfoChannelChannelNotSetted"));
+			event.reply(LanguageManager.getText(server.serv_language, "deleteInfoChannelChannelNotSet"));
 		} else {
 			try {
 				TextChannel textChannel = event.getGuild().getTextChannelById(infochannel.infochannel_channelid);

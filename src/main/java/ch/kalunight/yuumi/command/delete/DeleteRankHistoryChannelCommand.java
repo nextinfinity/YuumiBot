@@ -35,7 +35,7 @@ public class DeleteRankHistoryChannelCommand extends YuumiCommand {
 		DTO.RankHistoryChannel rankChannel = RankHistoryChannelRepository.getRankHistoryChannel(server.serv_guildId);
 
 		if(rankChannel == null) {
-			event.reply(LanguageManager.getText(server.serv_language, "deleteRankChannelNotSetted"));
+			event.reply(LanguageManager.getText(server.serv_language, "deleteRankChannelNotSet"));
 		} else {
 			try {
 				TextChannel textChannel = event.getGuild().getTextChannelById(rankChannel.rhChannel_channelId);

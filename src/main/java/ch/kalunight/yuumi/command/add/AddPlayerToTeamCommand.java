@@ -47,7 +47,7 @@ public class AddPlayerToTeamCommand extends YuumiCommand {
 
 				DTO.Team team = TeamRepository.getTeamByPlayerAndGuild(server.serv_guildId, player.player_discordId);
 				if(team != null) {
-					event.reply(String.format(LanguageManager.getText(server.serv_language, "mentionnedPlayerIsAlreadyInATeam"), team.team_name));
+					event.reply(String.format(LanguageManager.getText(server.serv_language, "mentionedPlayerIsAlreadyInATeam"), team.team_name));
 				} else {
 					Matcher matcher = PARENTHESES_PATTERN.matcher(event.getArgs());
 					String teamName = "";

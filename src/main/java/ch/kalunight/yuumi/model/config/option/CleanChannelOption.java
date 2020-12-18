@@ -254,7 +254,7 @@ public class CleanChannelOption extends ConfigurationOption {
 					textChannel.sendMessage(LanguageManager.getText(server.serv_language, "cleanChannelOptionInfoMessageAll")).complete();
 				}
 
-				event.getTextChannel().sendMessage(LanguageManager.getText(server.serv_language, "cleanChannelOptionSettedDoneMessage")).queue();
+				event.getTextChannel().sendMessage(LanguageManager.getText(server.serv_language, "cleanChannelOptionSetDoneMessage")).queue();
 
 			}else {
 				event.getTextChannel().sendMessage(LanguageManager.getText(server.serv_language, "cleanChannelOptionSelectInfoChannel")).queue();

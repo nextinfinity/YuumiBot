@@ -270,9 +270,9 @@ public class StatsProfileCommand extends YuumiCommand {
 
 		String url = Integer.toString(random.nextInt(100000));
 
-		List<ChampionMastery> championsMasteries;
+		List<ChampionMastery> championsMastery;
 		try {
-			championsMasteries = Yuumi.getRiotApi().getChampionMasteriesBySummoner(lolAccount.leagueAccount_server,
+			championsMastery = Yuumi.getRiotApi().getChampionMasteryBySummoner(lolAccount.leagueAccount_server,
 					lolAccount.leagueAccount_summonerId);
 		} catch(RiotApiException e) {
 			if(e.getErrorCode() == RiotApiException.RATE_LIMITED) {
@@ -286,8 +286,8 @@ public class StatsProfileCommand extends YuumiCommand {
 
 		byte[] imageBytes = null;
 		try {
-			if(championsMasteries != null && !championsMasteries.isEmpty()) {
-				imageBytes = generateMasteriesChart(player, championsMasteries, server, lolAccount);
+			if(championsMastery != null && !championsMastery.isEmpty()) {
+				imageBytes = generateMasteryChart(player, championsMastery, server, lolAccount);
 			}
 		} catch(IOException e) {
 			logger.info("Got a error in encoding bytesMap image : {}", e);
@@ -297,7 +297,7 @@ public class StatsProfileCommand extends YuumiCommand {
 
 		MessageEmbed embed;
 		try {
-			embed = MessageBuilderRequest.createProfileMessage(player, lolAccount, championsMasteries, server.serv_language, url);
+			embed = MessageBuilderRequest.createProfileMessage(player, lolAccount, championsMastery, server.serv_language, url);
 		} catch(RiotApiException e) {
 			if(e.getErrorCode() == RiotApiException.RATE_LIMITED) {
 				logger.debug("Get rate limited : {}", e);
@@ -324,39 +324,39 @@ public class StatsProfileCommand extends YuumiCommand {
 		}
 	}
 
-	private byte[] generateMasteriesChart(DTO.Player player, List<ChampionMastery> championsMasteries,
+	private byte[] generateMasteryChart(DTO.Player player, List<ChampionMastery> championsMastery,
 										  DTO.Server server, LeagueAccount leagueAccount) throws IOException {
-		List<ChampionMastery> listHeigherChampion = getBestMasteries(championsMasteries, NUMBER_OF_CHAMPIONS_IN_GRAPH);
-		CategoryChartBuilder masteriesGraphBuilder = new CategoryChartBuilder();
+		List<ChampionMastery> listHeigherChampion = getBestMastery(championsMastery, NUMBER_OF_CHAMPIONS_IN_GRAPH);
+		CategoryChartBuilder masteryGraphBuilder = new CategoryChartBuilder();
 
-		masteriesGraphBuilder.chartTheme = ChartTheme.GGPlot2;
+		masteryGraphBuilder.chartTheme = ChartTheme.GGPlot2;
 
 		if(player != null) {
-			masteriesGraphBuilder.title(String.format(LanguageManager.getText(server.serv_language, "statsProfileGraphTitle"),
+			masteryGraphBuilder.title(String.format(LanguageManager.getText(server.serv_language, "statsProfileGraphTitle"),
 					player.getUser().getName()));
 		}else {
-			masteriesGraphBuilder.title(String.format(LanguageManager.getText(server.serv_language, "statsProfileGraphTitle"),
+			masteryGraphBuilder.title(String.format(LanguageManager.getText(server.serv_language, "statsProfileGraphTitle"),
 					leagueAccount.leagueAccount_name));
 		}
 
-		CategoryChart masteriesGraph = masteriesGraphBuilder.build();
-		masteriesGraph.getStyler().setAntiAlias(true);
-		masteriesGraph.getStyler().setLegendVisible(false);
+		CategoryChart masteryGraph = masteryGraphBuilder.build();
+		masteryGraph.getStyler().setAntiAlias(true);
+		masteryGraph.getStyler().setLegendVisible(false);
 
-		if(getMoyenneMasteries(listHeigherChampion) < 50000) {
-			masteriesGraph.setYAxisLabelOverrideMap(MASTERIES_TABLE_OF_LOW_VALUE_Y_AXIS);
+		if(getMoyenneMastery(listHeigherChampion) < 50000) {
+			masteryGraph.setYAxisLabelOverrideMap(MASTERIES_TABLE_OF_LOW_VALUE_Y_AXIS);
 
-		} else if(getMoyenneMasteries(listHeigherChampion) < 200000) {
-			masteriesGraph.setYAxisLabelOverrideMap(MASTERIES_TABLE_OF_CLASSIC_VALUE_Y_AXIS);
+		} else if(getMoyenneMastery(listHeigherChampion) < 200000) {
+			masteryGraph.setYAxisLabelOverrideMap(MASTERIES_TABLE_OF_CLASSIC_VALUE_Y_AXIS);
 
 		}else {
-			masteriesGraph.setYAxisLabelOverrideMap(MASTERIES_TABLE_OF_HIGH_VALUE_Y_AXIS);
+			masteryGraph.setYAxisLabelOverrideMap(MASTERIES_TABLE_OF_HIGH_VALUE_Y_AXIS);
 		}
 
-		masteriesGraph.setXAxisTitle(LanguageManager.getText(server.serv_language, "statsProfileGraphTitleX"));
-		masteriesGraph.setYAxisTitle(LanguageManager.getText(server.serv_language, "statsProfileGraphTitleY"));
+		masteryGraph.setXAxisTitle(LanguageManager.getText(server.serv_language, "statsProfileGraphTitleX"));
+		masteryGraph.setYAxisTitle(LanguageManager.getText(server.serv_language, "statsProfileGraphTitleY"));
 
-		List<Double> xPointsMasteries = new ArrayList<>();
+		List<Double> xPointsMastery = new ArrayList<>();
 		List<Object> yName = new ArrayList<>();
 
 		for(int i = 0; i < listHeigherChampion.size(); i++) {
@@ -367,36 +367,36 @@ public class StatsProfileCommand extends YuumiCommand {
 				championName = actualSeriesChampion.getName();
 			}
 
-			xPointsMasteries.add((double) listHeigherChampion.get(i).getChampionPoints());
+			xPointsMastery.add((double) listHeigherChampion.get(i).getChampionPoints());
 			yName.add(championName);
 		}
 
-		masteriesGraph.addSeries("Champions", yName, xPointsMasteries);
+		masteryGraph.addSeries("Champions", yName, xPointsMastery);
 
-		return BitmapEncoder.getBitmapBytes(masteriesGraph, BitmapFormat.PNG);
+		return BitmapEncoder.getBitmapBytes(masteryGraph, BitmapFormat.PNG);
 	}
 
-	private long getMoyenneMasteries(List<ChampionMastery> championsMasteries) {
-		long allMasteries = 0;
-		for(ChampionMastery championMastery : championsMasteries) {
+	private long getMoyenneMastery(List<ChampionMastery> championsMastery) {
+		long allMastery = 0;
+		for(ChampionMastery championMastery : championsMastery) {
 			if(championMastery != null) {
-				allMasteries += championMastery.getChampionPoints();
+				allMastery += championMastery.getChampionPoints();
 			}
 		}
-		if(championsMasteries.isEmpty()) {
+		if(championsMastery.isEmpty()) {
 			return 0;
 		}
-		return allMasteries / championsMasteries.size();
+		return allMastery / championsMastery.size();
 	}
 
-	public static List<ChampionMastery> getBestMasteries(List<ChampionMastery> championsMasteries, int nbrTop) {
+	public static List<ChampionMastery> getBestMastery(List<ChampionMastery> championsMastery, int nbrTop) {
 		List<ChampionMastery> listHeigherChampion = new ArrayList<>();
 
 		for(int i = 0; i < nbrTop; i++) {
 
 			ChampionMastery heigherActual = null;
 
-			for(ChampionMastery championMastery : championsMasteries) {
+			for(ChampionMastery championMastery : championsMastery) {
 
 				if(listHeigherChampion.contains(championMastery)) {
 					continue;

@@ -153,12 +153,12 @@ public class CustomEmoteUtil {
 			return;
 		}
 
-		if(emote.getEmote().getName().equalsIgnoreCase("ZoeMatchInWait")) {
+		if(emote.getEmote().getName().equalsIgnoreCase("YuumiMatchInWait")) {
 			Resources.setGameToDo(emote);
 			return;
 		}
 
-		if(emote.getEmote().getName().equalsIgnoreCase("ZoeMatchLose")) {
+		if(emote.getEmote().getName().equalsIgnoreCase("YuumiMatchLose")) {
 			Resources.setGameLost(emote);
 		}
 	}

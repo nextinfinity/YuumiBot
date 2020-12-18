@@ -68,7 +68,7 @@ public class AddAccountCommand extends YuumiCommand {
 
 		DTO.Player player = PlayerRepository.getPlayer(server.serv_guildId, user.getIdLong());
 		if(player == null) {
-			event.reply(LanguageManager.getText(server.serv_language, "mentionnedUserNotRegistered"));
+			event.reply(LanguageManager.getText(server.serv_language, "mentionedUserNotRegistered"));
 			return;
 		}
 

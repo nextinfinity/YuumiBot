@@ -47,10 +47,10 @@ public class AboutCommand extends YuumiCommand {
 						Permission.MESSAGE_WRITE, Permission.MESSAGE_ATTACH_FILES, Permission.MESSAGE_ADD_REACTION,
 						Permission.MESSAGE_EXT_EMOJI, Permission.MESSAGE_EMBED_LINKS, Permission.MESSAGE_HISTORY,
 						Permission.MANAGE_EMOTES, Permission.MANAGE_ROLES);
-		inviteLink += "&response_type=code&redirect_uri=https%3A%2F%2Fzoe-discord-bot.ch%2FThanksYou.html";
+		inviteLink += "&response_type=code&redirect_uri=https%3A%2F%2Fyuumi-discord-bot.ch%2FThanksYou.html";
 
 		String desc = String.format(LanguageManager.getText(langage, "aboutMessage"),
-				"https://github.com/KaluNight/Zoe-Discord-Bot", "<https://discord.gg/whc5PrC>", inviteLink);
+				"https://github.com/KaluNight/Yuumi-Discord-Bot", "<https://discord.gg/whc5PrC>", inviteLink);
 
 		builder.setDescription(desc);
 		builder.addField("Stats", (event.getClient()).getTotalGuilds() + " Servers\nShard " + (event.getJDA().getShardInfo().getShardId() + 1)

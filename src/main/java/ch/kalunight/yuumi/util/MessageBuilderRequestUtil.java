@@ -148,7 +148,7 @@ public class MessageBuilderRequestUtil {
 		}else if(pastMoment.isBefore(now.minusMinutes(30))) {
 			return LanguageManager.getText(language, "30MinutesAgo");
 		}else if(pastMoment.isBefore(now.minusMinutes(10))) {
-			return LanguageManager.getText(language, "fewsMinutesAgo");
+			return LanguageManager.getText(language, "fewMinutesAgo");
 		}else {
 			return LanguageManager.getText(language, "unknown");
 		}

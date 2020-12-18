@@ -42,7 +42,7 @@ public class RemovePlayerToTeamCommand extends YuumiCommand {
 				.getMentionedMembers().get(0).getUser().getIdLong());
 
 		if(player == null) {
-			event.reply(LanguageManager.getText(server.serv_language, "removePlayerToTeamMentionnedPlayerNotPlayer"));
+			event.reply(LanguageManager.getText(server.serv_language, "removePlayerToTeamMentionedPlayerNotPlayer"));
 			return;
 		}
 

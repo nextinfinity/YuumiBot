@@ -17,7 +17,7 @@ import net.dv8tion.jda.api.entities.MessageChannel;
 
 public class RepoResources {
 
-	public static final String DB_USERNAME = "zoeadmin";
+	public static final String DB_USERNAME = "yuumiadmin";
 
 	private static HikariDataSource dataSource;
 
@@ -30,7 +30,7 @@ public class RepoResources {
 	public static void setupDatabase(String password, String url) {
 		PGSimpleDataSource source = new PGSimpleDataSource();
 		source.setURL(url);
-		source.setDatabaseName("zoe");
+		source.setDatabaseName("yuumi");
 		source.setUser(DB_USERNAME);
 		source.setPassword(password);
 

@@ -70,7 +70,7 @@ public class CreateLeaderboardCommand extends YuumiCommand {
 			objectiveList.add(objective);
 		}
 
-		selectAccountBuilder.setText(LanguageManager.getText(server.serv_language, "createLeaderboardTitleListeObjective"));
+		selectAccountBuilder.setText(LanguageManager.getText(server.serv_language, "createLeaderboardTitleListObjective"));
 
 		SelectionDialog choiceLeaderBoard = selectAccountBuilder.build();
 		choiceLeaderBoard.display(event.getChannel());

@@ -55,7 +55,7 @@ public class RegisterCommand extends YuumiCommand {
 		User user = event.getAuthor();
 
 		if(CreatePlayerCommand.isTheGivenUserAlreadyRegister(user, server)) {
-			event.reply(LanguageManager.getText(server.serv_language, "registerCommandAlreadyInZoe"));
+			event.reply(LanguageManager.getText(server.serv_language, "registerCommandAlreadyInYuumi"));
 			return;
 		}
 

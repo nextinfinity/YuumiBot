@@ -60,7 +60,7 @@ public abstract class LeaderboardExtraDataHandler {
 		}
 
 		if(event.getMessage().getMentionedChannels().size() != 1) {
-			message.getChannel().sendMessage(LanguageManager.getText(server.serv_language, "createLeaderboardNeedOneMentionnedChannel")).queue();
+			message.getChannel().sendMessage(LanguageManager.getText(server.serv_language, "createLeaderboardNeedOneMentionedChannel")).queue();
 			waiter.waitForEvent(MessageReceivedEvent.class,
 					e -> e.getAuthor().equals(event.getAuthor()) && e.getChannel().equals(event.getChannel())
 							&& !e.getMessage().getId().equals(event.getMessage().getId()),

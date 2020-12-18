@@ -65,7 +65,7 @@ public class MasteryPointSpecificChampLeaderboardService extends LeaderboardBase
 
 			long bestAccountPoints = 0;
 			for(DTO.LeagueAccount leagueAccount : leaguesAccounts) {
-				ChampionMastery mastery = Yuumi.getRiotApi().getChampionMasteriesBySummonerByChampionWithRateLimit(leagueAccount.leagueAccount_server,
+				ChampionMastery mastery = Yuumi.getRiotApi().getChampionMasteryBySummonerByChampionWithRateLimit(leagueAccount.leagueAccount_server,
 						leagueAccount.leagueAccount_summonerId, championId);
 
 				if(mastery == null) {

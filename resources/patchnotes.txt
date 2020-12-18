@@ -1,5 +1,5 @@
 **Leaderboard Update is here**
-Huge update today! Leaderboards are here! You can now create a leaderboard with the command `>create leaderboard`. There's currently 3 different objective with different parameters. Leaderboard work like the infopanel, the message is sended once and will be refreshed every hour. If the message is deleted Zoe won't resend the message. You can delete a leaderboard directly with the command `>delete leaderboard`.
+Huge update today! Leaderboards are here! You can now create a leaderboard with the command `>create leaderboard`. There's currently 3 different objective with different parameters. Leaderboard work like the infopanel, the message is sended once and will be refreshed every hour. If the message is deleted Yuumi won't resend the message. You can delete a leaderboard directly with the command `>delete leaderboard`.
 
 Here the patch note: 
 
@@ -9,9 +9,9 @@ Here the patch note:
 
 **Changlog :**
 -**NEW** You can now create leaderboards! Do it with the command `>create leaderboard`. He will refresh itself every hour. Lazy to wait ? The `>refresh` command work on leaderboards too! You can delete a leaderboard with the command `>delete leaderboard`. You have an idea for a new stats to track ? Suggest it in the support server! (see below)
--Tired of the double notification when Zoe send an infomatch message ? That's now the past ! Zoe will now send infomatch message in one message now.
+-Tired of the double notification when Yuumi send an infomatch message ? That's now the past ! Yuumi will now send infomatch message in one message now.
 -Minors bugs fix
 
 Like always, if you have some bugs, feedback or request don't hesitate to report them in the support server : https://discord.gg/Mzcg4nR
-If you want to help me to ensure Zoe's servers cost you can go there : <https://www.patreon.com/kalunight> (Ty so much !)
+If you want to help me to ensure Yuumi's servers cost you can go there : <https://www.patreon.com/kalunight> (Ty so much !)
 Hope you will enjoy this update !

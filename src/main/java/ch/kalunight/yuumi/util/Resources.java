@@ -56,7 +56,7 @@ public class Resources {
 	}
 
 	/**
-	 * Server we know they are busy and not interested by Zoe info Messages (Like discordbot.org server, ect)
+	 * Server we know they are busy and not interested by Yuumi info Messages (Like discordbot.org server, ect)
 	 */
 	public static boolean isBlackListed(String serverId) {
 		return blackListedSever.contains(serverId);
