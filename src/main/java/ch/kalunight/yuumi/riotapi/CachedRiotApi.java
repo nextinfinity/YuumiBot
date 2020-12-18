@@ -388,7 +388,7 @@ public class CachedRiotApi {
 	}
 
 	public ChampionMastery getChampionMasteryBySummonerByChampion(Platform platform, String summonerId, int championId) throws RiotApiException {
-		ChampionMastery mastery = riotApi.getChampionMasteryBySummonerByChampion(platform, summonerId, championId);
+		ChampionMastery mastery = riotApi.getChampionMasteriesBySummonerByChampion(platform, summonerId, championId);
 
 		championMasteryRequestCount.incrementAndGet();
 		increaseCallCountForGivenRegion(platform);
@@ -525,7 +525,7 @@ public class CachedRiotApi {
 
 			needToRetry = true;
 			try {
-				mastery = riotApi.getChampionMasteryBySummonerByChampion(platform, summonerId, championId);
+				mastery = riotApi.getChampionMasteriesBySummonerByChampion(platform, summonerId, championId);
 				needToRetry = false;
 			}catch(RateLimitException e) {
 				try {
@@ -552,7 +552,7 @@ public class CachedRiotApi {
 	}
 
 	public List<ChampionMastery> getChampionMasteryBySummoner(Platform platform, String summonerId) throws RiotApiException {
-		List<ChampionMastery> mastery = riotApi.getChampionMasteryBySummoner(platform, summonerId);
+		List<ChampionMastery> mastery = riotApi.getChampionMasteriesBySummoner(platform, summonerId);
 
 		championMasteryRequestCount.incrementAndGet();
 		increaseCallCountForGivenRegion(platform);
@@ -569,7 +569,7 @@ public class CachedRiotApi {
 
 			needToRetry = true;
 			try {
-				masterys = riotApi.getChampionMasteryBySummoner(platform, summonerId);
+				masterys = riotApi.getChampionMasteriesBySummoner(platform, summonerId);
 				needToRetry = false;
 			}catch(RateLimitException e) {
 				try {

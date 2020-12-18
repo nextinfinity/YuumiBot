@@ -233,7 +233,7 @@ public class Yuumi {
 	public static void loadChampions() throws IOException {
 		List<Champion> champions = new ArrayList<>();
 
-		try(FileReader fr = new FileReader("ressources/champion.json")) {
+		try(FileReader fr = new FileReader("resources/champion.json")) {
 
 			JsonObject object = JsonParser.parseReader(fr).getAsJsonObject().get("data").getAsJsonObject();
 			Set<Map.Entry<String, JsonElement>> list = object.entrySet();

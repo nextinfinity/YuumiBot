@@ -25,7 +25,7 @@ public class LanguageManager {
 
 	private static final Logger logger = LoggerFactory.getLogger(LanguageManager.class);
 
-	private static final File LANGUAGE_FOLDER = new File("ressources/languages");
+	private static final File LANGUAGE_FOLDER = new File("resources/languages");
 
 	private static final ConcurrentHashMap<TranslationKey, String> translations = new ConcurrentHashMap<>();
 

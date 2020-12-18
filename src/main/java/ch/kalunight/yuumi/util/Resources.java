@@ -17,11 +17,11 @@ public class Resources {
 		// Hide default public constructor
 	}
 
-	public static final String FOLDER_TO_TIER_SAVE = "ressources/tierData/";
+	public static final String FOLDER_TO_TIER_SAVE = "resources/tierData/";
 
-	public static final String FOLDER_TO_EMOTES = "ressources/images";
+	public static final String FOLDER_TO_EMOTES = "resources/images";
 
-	public static final File GUILD_EMOTES_FILE = new File("ressources/guilds.txt");
+	public static final File GUILD_EMOTES_FILE = new File("resources/guilds.txt");
 
 	private static List<Champion> champions = new ArrayList<>();
 

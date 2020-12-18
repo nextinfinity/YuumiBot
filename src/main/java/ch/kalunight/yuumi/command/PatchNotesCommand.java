@@ -14,7 +14,7 @@ import ch.kalunight.yuumi.util.CommandUtil;
 
 public class PatchNotesCommand extends YuumiCommand {
 
-	private static final File patchNoteFile = new File("ressources/patchnotes.txt");
+	private static final File patchNoteFile = new File("resources/patchnotes.txt");
 
 	public PatchNotesCommand() {
 		this.name = "patchNotes";

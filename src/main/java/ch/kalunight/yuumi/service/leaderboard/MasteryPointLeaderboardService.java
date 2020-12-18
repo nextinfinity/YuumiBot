@@ -59,11 +59,11 @@ public class MasteryPointLeaderboardService extends LeaderboardBaseService {
 
 			long bestAccountPoints = 0;
 			for(DTO.LeagueAccount leagueAccount : leaguesAccounts) {
-				List<ChampionMastery> mastery = Yuumi.getRiotApi().getChampionMasteryBySummonerWithRateLimit(leagueAccount.leagueAccount_server,
+				List<ChampionMastery> masteryList = Yuumi.getRiotApi().getChampionMasteryBySummonerWithRateLimit(leagueAccount.leagueAccount_server,
 						leagueAccount.leagueAccount_summonerId);
 
 				long totalAccountPoints = 0;
-				for(ChampionMastery mastery : mastery) {
+				for(ChampionMastery mastery : masteryList) {
 					totalAccountPoints += mastery.getChampionPoints();
 				}
 
